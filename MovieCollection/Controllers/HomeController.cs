@@ -13,18 +13,18 @@ namespace MovieCollection.Controllers
             _context = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() //Home Page
         {
             return View();
         }
 
-        public IActionResult KnowJoel()
+        public IActionResult KnowJoel() //Get to Know Joel Page
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult MovieForm()
+        public IActionResult MovieForm() //Add Movie Form
         {
             return View();
         }
@@ -33,16 +33,10 @@ namespace MovieCollection.Controllers
         public IActionResult MovieForm(Application response)
         {
             _context.Applications.Add(response);//Add record to the database
-            _context.SaveChanges();
+            _context.SaveChanges();//Updates changes
 
-            return View("Confirmation",response);
+            return View("Confirmation",response);//Sends user a confirmation page
         }
-
-        //public IActionResult MovieList()
-        //{
-        //    var applications = _context.Applications
-        //        .OrderBy(x => x.FormID).ToList();
-        //}
 
     }
 }

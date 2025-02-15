@@ -5,6 +5,7 @@ namespace MovieCollection.Models
 {
     public class Application
     {
+        // Required Primary Key
         [Key]
         [Required]
         public int FormID { get; set; }
@@ -25,7 +26,7 @@ namespace MovieCollection.Models
         public string Rating { get; set; }
 
         public bool? Edited { get; set; }
-
+       
         public string? LentTo { get; set; }
 
         [MaxLength(25)] // Ensures the database column has a max length of 25
