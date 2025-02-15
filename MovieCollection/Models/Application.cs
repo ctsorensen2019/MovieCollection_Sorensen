@@ -16,13 +16,13 @@ namespace MovieCollection.Models
         public string Title { get; set; }
 
         [Required]
-        public DateTime Year { get; set; }
+        public int Year { get; set; }
 
         [Required]
         public string Director { get; set; }
 
         [Required]
-        public float Rating { get; set; }
+        public string Rating { get; set; }
 
         public bool? Edited { get; set; }
 
