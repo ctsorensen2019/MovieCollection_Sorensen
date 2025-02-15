@@ -1,16 +1,16 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MovieCollection.Models;
+using SQLitePCL;
 
 namespace MovieCollection.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private MovieFormContext _context;
+        public HomeController(MovieFormContext temp)//Constructor
         {
-            _logger = logger;
+            _context = temp;
         }
 
         public IActionResult Index()
@@ -18,15 +18,31 @@ namespace MovieCollection.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult KnowJoel()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult MovieForm()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult MovieForm(Application response)
+        {
+            _context.Applications.Add(response);//Add record to the database
+            _context.SaveChanges();
+
+            return View("Confirmation",response);
+        }
+
+        //public IActionResult MovieList()
+        //{
+        //    var applications = _context.Applications
+        //        .OrderBy(x => x.FormID).ToList();
+        //}
+
     }
 }
