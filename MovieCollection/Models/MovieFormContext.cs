@@ -10,7 +10,15 @@ namespace MovieCollection.Models
             
         }
 
-        public DbSet<Application> Applications { get; set; }
+        public DbSet<Application> Movies { get; set; }
 
+
+        // This table corresponds to 'Categories'
+        public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //Seed Data
+        {
+            modelBuilder.Entity<Category>().HasData();
+        }
     }
 }

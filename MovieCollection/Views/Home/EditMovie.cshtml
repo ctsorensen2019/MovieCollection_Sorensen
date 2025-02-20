@@ -2,38 +2,53 @@
     ViewData["Title"] = "Edit Movies";
 }
 
-@model List<Application>
+@model List<Application> 
 
-<table class="table table-bordered">
-    <thead class="fw-bold">
-        <tr>
-            <td>Category</td>
-            <td>Title</td>
-            <td>Year</td>
-            <td>Director</td>
-            <td>Rating</td>
-            <td>Edited</td>
-            <td>LentTo</td>
-            <td>Notes</td>
-        </tr>
-    </thead>
+<div class="container mt-4">
+    <h2 class="text-center mb-3">Edit Movies</h2>
 
-    @foreach (var x in Model)
-    {
-        <tbody>
-            <tr>
-                <td>@x.Category</td>
-                <td>@x.Title</td>
-                <td>@x.Year</td>
-                <td>@x.Director</td>
-                <td>@x.Rating</td>
-                <td>@x.Edited</td>
-                <td>@x.LentTo</td>
-                <td>@x.Notes</td>
-
-                <td><a class ="btn btn-info">Edit</a></td>
-                <td><a class="btn btn-danger">Delete</a></td>
-            </tr>
-        </tbody>
-    }
-</table>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Movie ID</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Director</th>
+                    <th>Rating</th>
+                    <th>Edited</th>
+                    <th>Lent To</th>
+                    <th>Notes</th>
+                    <th colspan="2">Actions</th> <!-- Merged column for better spacing -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr>
+                        <td class="text-center">@x.MovieId</td>
+                        <td class="text-center">@x.Category.CategoryName</td>
+                        <td>@x.Title</td>
+                        <td class="text-center">@x.Year</td>
+                        <td>@x.Director</td>
+                        <td class="text-center">@x.Rating</td>
+                        <td class="text-center">@x.Edited</td>
+                        <td>@x.LentTo</td>
+                        <td class="text-wrap">@x.Notes</td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-info text-white" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">
+                                Edit
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">
+                                 Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
