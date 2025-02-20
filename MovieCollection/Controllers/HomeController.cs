@@ -23,11 +23,21 @@ namespace MovieCollection.Controllers
             return View();
         }
 
+        public IActionResult EditMovie()
+        {
+            // Assuming _context is your DbContext with a DbSet<Application> named Applications
+            var applications = _context.Applications.ToList();
+            return View(applications);
+        }
+
+
         [HttpGet]
         public IActionResult MovieForm() //Add Movie Form
         {
             return View();
         }
+
+
 
         [HttpPost]
         public IActionResult MovieForm(Application response)
